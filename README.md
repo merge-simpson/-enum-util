@@ -9,7 +9,7 @@ Enum 유틸을 올리는 김에 Jitpack에 게시해 보았습니다.
 - dependency
   - group: com.github.merge-simpson
   - artifact id: enum-util
-  - version: 0.1.1
+  - version: 0.1.0
 
 `build.gradle.kts` 예시
 
