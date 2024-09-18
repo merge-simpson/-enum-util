@@ -22,7 +22,7 @@ publishing {
     publications {
         create<MavenPublication>("mavenJava") {
             from(components["java"])
-            groupId = "com.github.merge-simpson"
+            groupId = "me.letsdev"
             artifactId = "enum-util"
             version = project.version.toString()
         }
