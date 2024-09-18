@@ -9,7 +9,7 @@ Enum 유틸을 올리는 김에 Jitpack에 게시해 보았습니다.
 - dependency
   - group: com.github.merge-simpson
   - artifact id: enum-util
-  - version: 0.1.0
+  - version: 0.1.1
 
 `build.gradle.kts` 예시
 
@@ -50,12 +50,12 @@ tasks.test {
 
 ```java
 <E extends Enum<E>, V>
-boolean isFieldUnique(E[] enumConstants, Function<E, V> valueGetter);
+boolean isUnique(E[] enumConstants, Function<E, V> valueGetter);
 ```
 
 ```java
 <E extends Enum<E>, V>
-boolean isFieldUnique(Class<E> enumClass, Function<E, V> valueGetter);
+boolean isUnique(Class<E> enumClass, Function<E, V> valueGetter);
 ```
 
 ### 예시: 고유한 상수 필드
@@ -95,7 +95,7 @@ public enum SampleStatus {
     
     // enum 클래스는 독특하게도, 열거 상수의 생성자가 먼저 실행되고 static 블록을 실행합니다.
     static {
-        assert EnumUtil.isFieldUnique(SampleStatus.values(), SampleStatus::code)
+        assert EnumUtil.isUnique(SampleStatus.values(), SampleStatus::code)
                 : "SampleStatus의 모든 code 필드가 고유해야 합니다.";
     }
     

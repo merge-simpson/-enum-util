@@ -15,21 +15,12 @@ public final class EnumUtil {
      * Returns {@code true} if the {@code getter} provides a unique value for each enum constant.
      * </pre>
      *
-     * <p><strong>Example:</strong></p>
-     *
-     * <pre>
-     * {@code
-     * // where "Sample" is an enum class.
-     * boolean result = EnumUtil.isFieldUnique(Sample.values(), Sample::getValue);
-     * }
-     * </pre>
-     *
      * <p><strong>Example using {@code assert}:</strong></p>
      *
      * <pre>
      * {@code
      * // It only works when the {@code -ea} option is included in the JVM options.
-     * assert EnumUtil.isFieldUnique(Sample.values(), Sample::getValue)
+     * assert EnumUtil.isUnique(Sample.values(), Sample::getValue)
      *         : "The \"value\" field of Sample enum class should be unique.";
      * }
      * </pre>
@@ -41,7 +32,7 @@ public final class EnumUtil {
      * @param <E> Type of enum class.
      * @param <V> Type of target field.
      */
-    public static <E extends Enum<E>, V> boolean isFieldUnique(E[] enumConstants, Function<E, V> valueGetter) {
+    public static <E extends Enum<E>, V> boolean isUnique(E[] enumConstants, Function<E, V> valueGetter) {
         Set<V> valueSet = Arrays.stream(enumConstants)
                 .map(valueGetter)
                 .collect(Collectors.toSet());
@@ -54,21 +45,12 @@ public final class EnumUtil {
      * Returns {@code true} if the {@code getter} provides a unique value for each enum constant.
      * </pre>
      *
-     * <p><strong>Example:</strong></p>
-     *
-     * <pre>
-     * {@code
-     * // where "Sample" is an enum class.
-     * boolean result = EnumUtil.isFieldUnique(Sample.class, Sample::getValue);
-     * }
-     * </pre>
-     *
      * <p><strong>Example using {@code assert}:</strong></p>
      *
      * <pre>
      * {@code
      * // It only works when the {@code -ea} option is included in the JVM options.
-     * assert EnumUtil.isFieldUnique(Sample.class, Sample::getValue)
+     * assert EnumUtil.isUnique(Sample.class, Sample::getValue)
      *         : "The \"value\" field of Sample enum class should be unique.";
      * }
      * </pre>
@@ -80,7 +62,7 @@ public final class EnumUtil {
      * @param <E> Type of enum class.
      * @param <V> Type of target field.
      */
-    public static <E extends Enum<E>, V> boolean isFieldUnique(Class<E> enumClass, Function<E, V> valueGetter) {
-        return isFieldUnique(enumClass.getEnumConstants(), valueGetter);
+    public static <E extends Enum<E>, V> boolean isUnique(Class<E> enumClass, Function<E, V> valueGetter) {
+        return isUnique(enumClass.getEnumConstants(), valueGetter);
     }
 }
